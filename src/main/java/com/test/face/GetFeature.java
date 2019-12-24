@@ -1,31 +1,20 @@
 package com.test.face;
 
-import com.sensetime.ad.core.StBodyAttributes;
-import com.sensetime.ad.core.StBodyTrack;
 import com.sensetime.ad.core.StFaceAttribute;
-import com.sensetime.ad.core.StFaceDetect;
 import com.sensetime.ad.core.StFaceException;
-import com.sensetime.ad.core.StFaceImage;
 import com.sensetime.ad.core.StFaceLiveness;
 import com.sensetime.ad.core.StFaceTrack;
 import com.sensetime.ad.core.StFaceVerify;
-import com.sensetime.ad.sdk.StAttributeResult;
 import com.sensetime.ad.sdk.StFace;
 import com.sensetime.ad.sdk.StFaceFeature;
 import com.sensetime.ad.sdk.StFaceOrientation;
 import com.sensetime.ad.sdk.StImageFormat;
-import com.sensetime.ad.sdk.StPointF;
 import com.test.face.constants.FaceConstants;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author wzm
@@ -60,10 +49,10 @@ public class GetFeature {
     }
 
 
-    public static StFaceFeature testFace(String picture) {
+    static StFaceFeature testFace(String picture) {
 
         init();
-
+        System.out.println("初始化成功");
         StFaceFeature feature = null;
 
         try {
@@ -74,7 +63,7 @@ public class GetFeature {
             byte[] data = new byte[width * height * 3];//BGR888
             frame.get(0, 0, data);
 
-            List<StFaceFeature> features = new ArrayList<StFaceFeature>();
+
 
             //detect
 
@@ -85,7 +74,7 @@ public class GetFeature {
                 for (StFace face : faces) {
                     //feature
                     feature = stFaceVerify.getFeature(data, StImageFormat.ST_PIX_FMT_NV21, width, height, face);
-                    String featureString = null;
+                    String featureString;
                     featureString = new String(feature.getByteFeature());
                     System.out.println("feature:" + featureString);
 
@@ -97,11 +86,12 @@ public class GetFeature {
         }
 
         postTest();
+        System.out.println("资源释放成功");
 
         return feature;
     }
 
-    public static int init() {
+    private static void init() {
 
         try {
             stFaceTrack = new StFaceTrack(detectDetectModel, alignModel, poseModel, 0);
@@ -112,10 +102,9 @@ public class GetFeature {
             e.printStackTrace();
         }
 
-        return 0;
     }
 
-    public static void postTest() {
+    private static void postTest() {
         stFaceTrack.release();
         stFaceAttribute.release();
         stFaceLiveness.release();

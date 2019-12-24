@@ -1,0 +1,8 @@
+*.iml
+target/
+.idea/
+src/main/resources/static/
+src/main/resources/templates/
+web/dist/
+web/node_modules
+.DS_Store

@@ -30,8 +30,9 @@ public class CompareFeature {
             StFaceVerify stFaceVerify = new StFaceVerify(alignModel, verifyModel);
             StFaceFeature feature1 = GetFeature.testFace(args[0]);
             //StFaceFeature feature2 = GetFeature.testFace(args[1]);
+            StFaceFeature feature2 = StFaceFeature.createStFaceFeature(feature.getBytes());
             if(null != feature1) {
-                float score = stFaceVerify.compareFeature(feature1.getByteFeature(), feature.getBytes());
+                float score = stFaceVerify.compareFeature(feature1, feature2);
                 System.out.println("compare score: " + score);
             }
             System.out.println("get feature is null.feature1:"+feature1);

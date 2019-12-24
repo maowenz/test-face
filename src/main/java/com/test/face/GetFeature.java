@@ -62,13 +62,7 @@ public class GetFeature {
             int height = frame.rows();
             byte[] data = new byte[width * height * 3];//BGR888
             frame.get(0, 0, data);
-
-
-
             //detect
-
-
-
             StFace[] faces = stFaceTrack.detectBasicInfo(data, StImageFormat.ST_PIX_FMT_BGR888, width, height, StFaceOrientation.ST_FACE_UP);
             if (faces != null) {
                 for (StFace face : faces) {

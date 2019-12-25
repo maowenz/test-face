@@ -1,8 +1,6 @@
 package com.test.face;
 
-import com.sensetime.ad.core.StFaceAttribute;
 import com.sensetime.ad.core.StFaceException;
-import com.sensetime.ad.core.StFaceLiveness;
 import com.sensetime.ad.core.StFaceTrack;
 import com.sensetime.ad.core.StFaceVerify;
 import com.sensetime.ad.sdk.StFace;
@@ -25,14 +23,10 @@ public class GetFeature {
     private static String detectDetectModel = FaceConstants.detect_detect_name;
     private static String alignModel = FaceConstants.alignment_name;
     private static String poseModel = FaceConstants.headpose_name;
-    private static String attrModel = FaceConstants.attribute_name;
     private static String verifyModel = FaceConstants.verify_name;
-    private static String liveMode = FaceConstants.liveness_name;
 
     private static StFaceTrack stFaceTrack;
-    private static StFaceAttribute stFaceAttribute;
     private static StFaceVerify stFaceVerify;
-    private static StFaceLiveness stFaceLiveness;
 
     public static void main(String[] args) {
         int activate = GetActivationCode.activate(FaceConstants.license_file_name, FaceConstants.activation_code_file_name);
@@ -91,9 +85,7 @@ public class GetFeature {
 
         try {
             stFaceTrack = new StFaceTrack(detectDetectModel, alignModel, poseModel, 0);
-            stFaceAttribute = new StFaceAttribute(attrModel, alignModel);
             stFaceVerify = new StFaceVerify(alignModel, verifyModel);
-            stFaceLiveness = new StFaceLiveness(liveMode, alignModel);
         } catch (StFaceException e) {
             e.printStackTrace();
         }
@@ -102,8 +94,6 @@ public class GetFeature {
 
     private static void postTest() {
         stFaceTrack.release();
-        stFaceAttribute.release();
-        stFaceLiveness.release();
         stFaceVerify.release();
     }
 

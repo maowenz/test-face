@@ -58,13 +58,15 @@ public class GetFeature {
         try {
             System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
             Mat frame = Imgcodecs.imread(picture, 1);
+            System.out.println("图片转换成功");
             int width = frame.cols();
             int height = frame.rows();
             byte[] data = new byte[width * height * 3];//BGR888
             frame.get(0, 0, data);
             //detect
             StFace[] faces = stFaceTrack.detectBasicInfo(data, StImageFormat.ST_PIX_FMT_BGR888, width, height, StFaceOrientation.ST_FACE_UP);
-//            if (faces != null) {
+            if (faces != null) {
+                System.out.println("人脸检测成功。" + faces.length);
 //                for (StFace face : faces) {
                     //feature
                     feature = stFaceVerify.getFeature(data, StImageFormat.ST_PIX_FMT_NV21, width, height, faces[0]);
@@ -73,7 +75,7 @@ public class GetFeature {
                     System.out.println("feature:" + featureString);
 //
 //                }
-//            }
+            }
         } catch (StFaceException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

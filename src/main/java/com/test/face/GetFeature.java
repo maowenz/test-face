@@ -69,7 +69,7 @@ public class GetFeature {
                 System.out.println("人脸检测成功。" + faces.length);
 //                for (StFace face : faces) {
                     //feature
-                    feature = stFaceVerify.getFeature(data, StImageFormat.ST_PIX_FMT_YUV420P, width, height, faces[0]);
+                    feature = stFaceVerify.getFeature(data, StImageFormat.ST_PIX_FMT_BGR888, width, height, faces[0]);
                     String featureString;
                     featureString = new String(feature.getByteFeature());
                     System.out.println("feature:" + featureString);

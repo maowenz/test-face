@@ -64,16 +64,16 @@ public class GetFeature {
             frame.get(0, 0, data);
             //detect
             StFace[] faces = stFaceTrack.detectBasicInfo(data, StImageFormat.ST_PIX_FMT_BGR888, width, height, StFaceOrientation.ST_FACE_UP);
-            if (faces != null) {
-                for (StFace face : faces) {
+//            if (faces != null) {
+//                for (StFace face : faces) {
                     //feature
-                    feature = stFaceVerify.getFeature(data, StImageFormat.ST_PIX_FMT_NV21, width, height, face);
+                    feature = stFaceVerify.getFeature(data, StImageFormat.ST_PIX_FMT_NV21, width, height, faces[0]);
                     String featureString;
                     featureString = new String(feature.getByteFeature());
                     System.out.println("feature:" + featureString);
-
-                }
-            }
+//
+//                }
+//            }
         } catch (StFaceException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

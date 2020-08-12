@@ -10,7 +10,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zero.face</groupId>
+            <groupId>com.zero.body</groupId>
             <artifactId>insight_algorithm</artifactId>
         </dependency>
         <dependency>
@@ -22,9 +22,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.zero.face</groupId>
+                <groupId>com.zero.body</groupId>
                 <artifactId>insight_algorithm</artifactId>
-                <version>1.0.2</version>
+                <version>2.1.0</version>
             </dependency>
             <dependency>
                 <groupId>com.zero.face</groupId>

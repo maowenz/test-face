@@ -99,6 +99,7 @@ public class BodyTest {
         quality = StLibrary.stGetQuality(classifier, image, 5, width[0], height[0], bodies[0], retcode);
         byte feature2[] = StLibrary.stReIdProcessImage(reidHandle, image, 5, width[0], height[0], bodies[0], retcode);
         float score = StLibrary.stReIdCompare(feature1, feature2);
+        System.out.println("最终结果：score：" + score);
     }
 
 }

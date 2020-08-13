@@ -65,9 +65,12 @@ public class BodyTest {
         int width[] = new int[1];
         int height[] = new int[1];
         long cur2 = System.currentTimeMillis();
+        System.out.println("cur2:"+cur2);
         byte[] image = StLibrary.stGetBgrDataFromImage(testImage, width, height);
+        System.out.println("image length:"+image.length);
         StBody[] bodies = null;
         do{
+            System.out.println("开始人体识别");
             bodies = StLibrary.stCommonBodyTrackingCompactTrack(bodyHandler, image, 5, width[0], height[0], 1, retcode);
             try {
                 Thread.sleep(10);
@@ -75,9 +78,11 @@ public class BodyTest {
                 e.printStackTrace();
             }
         }while (bodies == null || bodies.length == 0);
+        System.out.println("开始质量分检测");
         float quality = StLibrary.stGetQuality(classifier, image, 5, width[0], height[0], bodies[0], retcode);
         System.out.println("人体质量："+quality);
         long cur = System.currentTimeMillis();
+        System.out.println("开始特征值提取");
         byte feature1[] = StLibrary.stReIdProcessImage(reidHandle, image, 5, width[0], height[0], bodies[0], retcode);
         System.out.println("zqt time = " + (System.currentTimeMillis() - cur));
         System.out.println("zqt time1 = " + (System.currentTimeMillis() - cur2));

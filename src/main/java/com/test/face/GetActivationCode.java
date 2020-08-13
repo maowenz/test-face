@@ -33,21 +33,22 @@ public class GetActivationCode {
         }
 
         String actCode = FileUtils.readFileContent(activateCodePath);
-        if (TextUtils.isEmpty(actCode)) {
-            int[] retCode = new int[1];
-            actCode = StLibrary.onlineActivite("SenseInsight", license, retCode);
-            if (retCode[0] != 0) {
-                System.out.println("get certify code failed.");
-                return retCode[0];
-            }
-
-            if (!TextUtils.isEmpty(actCode)) {
-                FileUtils.writeToFile(actCode, activateCodePath);
-            }
-        }
-
-        int ret = StLibrary.addLic("SenseInsight", license, TextUtils.isEmpty(actCode) ? "" : actCode);
-        return ret;
+//        if (TextUtils.isEmpty(actCode)) {
+//            int[] retCode = new int[1];
+//            actCode = StLibrary.onlineActivite("SenseInsight", license, retCode);
+//            if (retCode[0] != 0) {
+//                System.out.println("get certify code failed.");
+//                return retCode[0];
+//            }
+//
+//            if (!TextUtils.isEmpty(actCode)) {
+//                FileUtils.writeToFile(actCode, activateCodePath);
+//            }
+//        }
+//
+//        int ret = StLibrary.addLic("SenseInsight", license, TextUtils.isEmpty(actCode) ? "" : actCode);
+//        return ret;
+        return 0;
     }
 
 }

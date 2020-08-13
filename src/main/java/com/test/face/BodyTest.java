@@ -44,7 +44,7 @@ public class BodyTest {
         int retcode[] = new int[1];
         String bodydetect = "/home/data/body/models/M_Detect_Body_Hunter_1.7.0.model";
         String bodyaligment = "/home/data/body/models/M_Detect_Body_Keypoints_5.5.0.model";
-        String testImage = "./4.png";
+        String testImage = "/root/body/4.png";
         //LibraryUtil.addLibraryPath("./system/");
         String license = readLicense("/home/data/sense-face/sense-time-license.lic");
         String signedCode = StLibrary.generateActivationCode("SenseInsight", license,retcode);
@@ -87,7 +87,7 @@ public class BodyTest {
         System.out.println("zqt time = " + (System.currentTimeMillis() - cur));
         System.out.println("zqt time1 = " + (System.currentTimeMillis() - cur2));
 
-        image = StLibrary.stGetBgrDataFromImage("./1.png", width, height);
+        image = StLibrary.stGetBgrDataFromImage("/root/body/1.png", width, height);
         do{
             bodies = StLibrary.stCommonBodyTrackingCompactTrack(bodyHandler, image, 5, width[0], height[0], 1, retcode);
             try {
